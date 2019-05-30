@@ -5,8 +5,27 @@ class LinkedListNode
     @value = value
     @next_node = next_node
   end
+end
 
-  
+
+
+class Stack
+  attr_reader :data
+
+  def initialize
+    @data = nil
+  end
+
+  def push(value)
+    @data = LinkedListNode.new(value,@data)
+  end
+
+  def pop
+    return "nil" if @data.nil?
+    value = @data.value
+    @data = @data.next_node
+    value
+  end
 end
 
 def print_values(list_node)
@@ -19,66 +38,20 @@ def print_values(list_node)
   end
 end
 
-class Stack
-  attr_reader :data
-
-  def initialize
-    @data = nil
+def reverse_list(list)
+  stack = Stack.new
+  while list
+    stack.push(list.value)
+    list = list.next_node
   end
-
-  # Push a value onto the stack
-  def push(value)
-      # IMPLEMENT ME!
-    #Use LinkedListNode to create a new "value" and "@next_node value"  
-    @data = LinkedListNode.new(value,@data)
-  end
-
-  # Pop an item off the stack.
-  # Remove the last item that was pushed onto the
-  # stack and return the value to the user
-  def pop
-    #check if @data is empty
-    return "empty" if @data.nil?
-    #if not empty pull the last value from @data
-    value = @data.value
-    #@data update to the next value saved on next node
-    @data = @data.next_node
-    value
-  end
-
+  return stack.data
 end
 
+node1 = LinkedListNode.new(37)
+node2 = LinkedListNode.new(99, node1)
+node3 = LinkedListNode.new(12, node2)
 
-#node1 = LinkedListNode.new(37)
-#node2 = LinkedListNode.new(99, node1)
-#node3 = LinkedListNode.new(12, node2)
-
-#print_values(node3)
-
-#puts "-------"
-
-#revlist = reverse_list(node3)
-
-#print_values(revlist)
-
-# Creates a new Stack object
-stack = Stack.new
-
-# Pushes (adds) the number 1 to the empty stack
-stack.push(1)
-
-# Pushes the number 2 to the TOP of the stack
-stack.push(2)
-stack.push(2)
-stack.push(2)
-stack.push(3)
-stack.push(3)
-# Pops (removes) the TOP number from the stack (2)
-puts stack.pop
-
-# Pops the remaining number from the stack (1)
-puts stack.pop
-
-# Tries to pop the TOP number from the stack,
-# but it is empty so it returns nil
-puts stack.pop
+print_values(node3)
+puts "---------"
+revlist = reverse_list(node3)
+print_values(revlist)
