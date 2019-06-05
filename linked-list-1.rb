@@ -1,32 +1,4 @@
-class LinkedListNode
-  attr_accessor :value, :next_node
-
-  def initialize(value, next_node=nil)
-    @value = value
-    @next_node = next_node
-  end
-end
-
-
-
-class Stack
-  attr_reader :data
-
-  def initialize
-    @data = nil
-  end
-
-  def push(value)
-    @data = LinkedListNode.new(value,@data)
-  end
-
-  def pop
-    return "nil" if @data.nil?
-    value = @data.value
-    @data = @data.next_node
-    value
-  end
-end
+require_relative 'stack'
 
 def print_values(list_node)
   if list_node
@@ -55,3 +27,4 @@ print_values(node3)
 puts "---------"
 revlist = reverse_list(node3)
 print_values(revlist)
+
